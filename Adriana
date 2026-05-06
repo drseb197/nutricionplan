@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crear Salud · Plan de Adriana Mondragón Bonilla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f5efe4;
+    --bg-2:#ede4d2;
+    --ink:#1d2419;
+    --ink-soft:#3a4234;
+    --paper:#fbf7ee;
+    --olive:#3d4d2e;
+    --olive-deep:#27331c;
+    --terracotta:#b1502d;
+    --terracotta-soft:#d97a52;
+    --mustard:#caa44a;
+    --cream:#f0e3c4;
+    --rose:#d8a294;
+    --line:#2a2a26;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'DM Sans', sans-serif;
+    background: var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* Grain texture overlay */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+    opacity:.5;
+    mix-blend-mode:multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* ==== Progress bar ==== */
+  .progress-wrap{
+    position:fixed; top:0; left:0; right:0;
+    height:4px;
+    background:rgba(0,0,0,.05);
+    z-index:100;
+  }
+  .progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--terracotta), var(--mustard), var(--olive));
+    transition: width .15s linear;
+  }
+
+  /* ==== Floating Nav ==== */
+  .nav{
+    position:fixed;
+    top:50%; right:24px;
+    transform:translateY(-50%);
+    z-index:50;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .nav a{
+    width:10px; height:10px;
+    border-radius:50%;
+    background:var(--ink);
+    opacity:.25;
+    transition:all .3s;
+    display:block;
+    position:relative;
+  }
+  .nav a:hover{opacity:.7; transform:scale(1.3);}
+  .nav a.active{
+    opacity:1;
+    background:var(--terracotta);
+    transform:scale(1.4);
+  }
+  .nav a::after{
+    content: attr(data-label);
+    position:absolute;
+    right:24px; top:50%; transform:translateY(-50%);
+    background:var(--ink);
+    color:var(--paper);
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.5px;
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s;
+    text-transform:uppercase;
+  }
+  .nav a:hover::after{opacity:1;}
+  @media (max-width:720px){ .nav{display:none;} }
+
+  /* ==== Section base ==== */
+  section{
+    position:relative;
+    z-index:2;
+    padding:120px 6vw;
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  @media (max-width:720px){
+    section{ padding:80px 5vw; min-height:auto;}
+  }
+
+  /* ==== Section 1 — HERO ==== */
+  .hero{
+    background:
+      radial-gradient(circle at 80% 20%, rgba(202,164,74,.25), transparent 50%),
+      radial-gradient(circle at 15% 85%, rgba(177,80,45,.18), transparent 55%),
+      var(--bg);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:40px;
+    max-width:1300px;
+    margin:0 auto;
+    width:100%;
+    position:relative;
+  }
+  .hero .eyebrow{
+    font-family:'DM Sans', sans-serif;
+    font-size:11px;
+    letter-spacing:.4em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    font-weight:600;
+    margin-bottom:24px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .hero .eyebrow::before{
+    content:""; width:50px; height:1px; background:var(--terracotta);
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size: clamp(56px, 11vw, 180px);
+    line-height:.92;
+    letter-spacing:-.04em;
+    color:var(--ink);
+  }
+  .hero h1 .it{
+    font-style:italic;
+    font-weight:500;
+    color:var(--olive);
+  }
+  .hero h1 .crear{
+    display:block;
+  }
+  .hero h1 .salud{
+    display:block;
+    color:var(--terracotta);
+    font-weight:600;
+  }
+  .hero-sub{
+    margin-top:36px;
+    max-width:580px;
+    font-size: clamp(15px, 1.2vw, 17px);
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
+  .hero-meta{
+    margin-top:48px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px 48px;
+    align-items:flex-end;
+  }
+  .meta-block .meta-label{
+    font-size:10px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .meta-block .meta-value{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:500;
+  }
+  .hero-decor{
+    position:absolute;
+    right:-5%; top:-10%;
+    width:380px; height:380px;
+    border-radius:50%;
+    border:1px solid rgba(61,77,46,.3);
+    pointer-events:none;
+    animation: spin 60s linear infinite;
+  }
+  .hero-decor::before{
+    content:"";
+    position:absolute; inset:30px;
+    border-radius:50%;
+    border:1px dashed rgba(177,80,45,.4);
+  }
+  .hero-decor span{
+    position:absolute;
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    font-family:'Caveat', cursive;
+    font-size:42px;
+    color:var(--olive);
+    transform-origin: center;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg);} }
+  .scroll-cue{
+    margin-top:80px;
+    font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex; align-items:center; gap:14px;
+  }
+  .scroll-cue .line{
+    width:60px; height:1px; background:var(--ink-soft);
+    position:relative; overflow:hidden;
+  }
+  .scroll-cue .line::after{
+    content:""; position:absolute; inset:0; background:var(--terracotta);
+    animation: slide 2s ease-in-out infinite;
+  }
+  @keyframes slide{
+    0%{transform:translateX(-100%);} 100%{transform:translateX(100%);}
+  }
+
+  /* ==== Section 2 — Carta de Diana ==== */
+  .letter{
+    background:var(--bg);
+    position:relative;
+  }
+  .letter-wrap{
+    max-width:780px;
+    margin:0 auto;
+    width:100%;
+  }
+  .letter-card{
+    background:var(--paper);
+    padding: clamp(40px, 6vw, 72px);
+    border-radius:4px;
+    box-shadow:
+      0 1px 0 rgba(0,0,0,.04),
+      0 30px 60px -30px rgba(39,51,28,.25);
+    position:relative;
+    transform:rotate(-.4deg);
+  }
+  .letter-card::before{
+    content:"";
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%) rotate(2deg);
+    width:120px; height:30px;
+    background:rgba(202,164,74,.4);
+    border-radius:1px;
+    box-shadow:0 2px 6px rgba(0,0,0,.1);
+  }
+  .letter-tag{
+    font-size:10px; letter-spacing:.4em; text-transform:uppercase;
+    color:var(--terracotta);
+    margin-bottom:16px;
+  }
+  .letter h2{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height:1.15;
+    margin-bottom:30px;
+    letter-spacing:-.01em;
+  }
+  .letter h2 em{
+    font-style:italic;
+    color:var(--terracotta);
+  }
+  .letter p{
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    line-height:1.75;
+  }
+  .letter .signature{
+    margin-top:40px;
+    font-family:'Caveat', cursive;
+    font-size:34px;
+    color:var(--olive-deep);
+    line-height:1;
+  }
+  .letter .signature small{
+    display:block;
+    font-family:'DM Sans', sans-serif;
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:12px;
+  }
+  .why-three{
+    margin-top:60px;
+    padding:36px 40px;
+    background:var(--cream);
+    border-left:3px solid var(--terracotta);
+    border-radius:2px;
+    transform:rotate(.3deg);
+  }
+  .why-three .label{
+    font-family:'Caveat', cursive;
+    font-size:24px;
+    color:var(--terracotta);
+    margin-bottom:8px;
+  }
+  .why-three p{
+    font-size:15px;
+    margin-bottom:0;
+  }
+
+  /* ==== Section 3 — Diagnóstico / Lo que vimos ==== */
+  .insight{
+    background: var(--olive-deep);
+    color:var(--paper);
+    padding: 120px 6vw;
+  }
+  .insight-wrap{
+    max-width:1200px; margin:0 auto; width:100%;
+  }
+  .insight .eyebrow{
+    color:var(--mustard);
+    font-size:11px; letter-spacing:.4em; text-transform:uppercase;
+    margin-bottom:30px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .insight .eyebrow::before{
+    content:""; width:50px; height:1px; background:var(--mustard);
+  }
+  .insight h2{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size: clamp(38px, 6vw, 80px);
+    line-height:1;
+    letter-spacing:-.03em;
+    margin-bottom:60px;
+    max-width:900px;
+  }
+  .insight h2 em{
+    font-style:italic;
+    color:var(--mustard);
+  }
+  .insight-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap:1px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .insight-card{
+    background: var(--olive-deep);
+    padding:36px 32px;
+    transition:background .3s;
+    cursor:default;
+    position:relative;
+  }
+  .insight-card:hover{
+    background: var(--olive);
+  }
+  .insight-card .num{
+    font-family:'Fraunces', serif;
+    font-size:48px;
+    font-weight:300;
+    color:var(--mustard);
+    font-style:italic;
+    line-height:1;
+    margin-bottom:18px;
+    opacity:.85;
+  }
+  .insight-card h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:20px;
+    margin-bottom:10px;
+    color:var(--paper);
+  }
+  .insight-card p{
+    font-size:14px;
+    color:rgba(251,247,238,.7);
+    line-height:1.6;
+  }
+
+  /* ==== Section 4 — Plan de comidas ==== */
+  .plan{
+    background:var(--bg);
+    padding-bottom:80px;
+  }
+  .plan-head{
+    max-width:1200px; margin:0 auto 50px; width:100%;
+    text-align:center;
+  }
+  .plan-head .eyebrow{
+    font-size:11px; letter-spacing:.4em; text-transform:uppercase;
+    color:var(--terracotta); font-weight:600;
+    margin-bottom:20px;
+  }
+  .plan-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height:1;
+    letter-spacing:-.03em;
+  }
+  .plan-head h2 em{
+    font-style:italic; color:var(--terracotta); font-weight:500;
+  }
+  .plan-head p{
+    margin-top:20px;
+    color:var(--ink-soft);
+    max-width:600px; margin-left:auto; margin-right:auto;
+    font-size:15px;
+  }
+
+  /* Day tabs */
+  .day-tabs{
+    display:flex;
+    justify-content:center;
+    gap:0;
+    margin: 50px auto 40px;
+    max-width:600px;
+    border-bottom:1px solid rgba(0,0,0,.1);
+    flex-wrap:wrap;
+  }
+  .day-tab{
+    flex:1;
+    min-width:120px;
+    padding:18px 20px;
+    background:none; border:none;
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    transition: all .25s;
+    margin-bottom:-1px;
+    font-weight:400;
+  }
+  .day-tab:hover{ color:var(--ink); }
+  .day-tab.active{
+    color:var(--terracotta);
+    border-bottom-color: var(--terracotta);
+    font-weight:500;
+  }
+  .day-tab .num{
+    display:block;
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+    font-family:'DM Sans', sans-serif;
+    font-weight:500;
+  }
+  .day-tab.active .num{ color:var(--terracotta); }
+
+  .meal-grid{
+    max-width:1300px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:24px;
+  }
+  .meal-card{
+    background:var(--paper);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 20px 40px -25px rgba(39,51,28,.2);
+    display:flex; flex-direction:column;
+    position:relative;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
+  }
+  .meal-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 30px 50px -25px rgba(39,51,28,.35);
+  }
+  .meal-header{
+    padding: 22px 28px 16px;
+    display:flex; justify-content:space-between; align-items:flex-start;
+    border-bottom:1px solid rgba(0,0,0,.06);
+    background: linear-gradient(180deg, rgba(202,164,74,.08), transparent);
+  }
+  .meal-icon{
+    font-size:28px;
+    display:block;
+    margin-bottom:8px;
+  }
+  .meal-title{
+    font-family:'Fraunces', serif;
+    font-size:24px;
+    font-weight:500;
+    letter-spacing:-.01em;
+  }
+  .meal-time{
+    font-size:10px; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--terracotta);
+    font-weight:600;
+    margin-top:4px;
+  }
+  .meal-body{
+    padding:8px 28px 24px;
+    flex:1;
+  }
+  .meal-option{
+    border-bottom:1px dashed rgba(0,0,0,.1);
+    padding:18px 0;
+  }
+  .meal-option:last-child{ border-bottom:none; }
+  .meal-option-head{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:8px;
+  }
+  .opt-num{
+    width:24px; height:24px;
+    border-radius:50%;
+    background: var(--cream);
+    color: var(--olive-deep);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:13px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .opt-name{
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--olive-deep);
+  }
+  .meal-option p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.65;
+    padding-left:34px;
+  }
+  .meal-option p strong{
+    color:var(--ink);
+    font-weight:600;
+  }
+
+  .meal-pane{ display:none; animation: fadeUp .4s ease both; }
+  .meal-pane.active{ display:grid; }
+  @keyframes fadeUp{
+    from{opacity:0; transform: translateY(14px);}
+    to{opacity:1; transform: translateY(0);}
+  }
+
+  /* ==== Section 5 — Lista de intercambios ==== */
+  .swap{
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    padding-bottom: 140px;
+  }
+  .swap-head{
+    max-width:1200px; margin:0 auto 50px; width:100%;
+  }
+  .swap-head .eyebrow{
+    font-size:11px; letter-spacing:.4em; text-transform:uppercase;
+    color:var(--terracotta); font-weight:600;
+    margin-bottom:20px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .swap-head .eyebrow::before{
+    content:""; width:50px; height:1px; background:var(--terracotta);
+  }
+  .swap-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size: clamp(36px, 5.5vw, 72px);
+    line-height:1.05;
+    letter-spacing:-.03em;
+    max-width:900px;
+  }
+  .swap-head h2 em{ font-style:italic; color:var(--olive); font-weight:500; }
+  .swap-head p{
+    margin-top:20px;
+    color:var(--ink-soft); max-width:680px;
+    font-size:15px;
+  }
+
+  .group{
+    max-width:1200px;
+    margin:0 auto 18px;
+    background:var(--paper);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 30px -20px rgba(39,51,28,.2);
+  }
+  .group-head{
+    padding: 24px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    cursor:pointer;
+    user-select:none;
+    transition: background .25s;
+    gap:20px;
+  }
+  .group-head:hover{ background: rgba(202,164,74,.08); }
+  .group-left{ display:flex; align-items:center; gap:20px; flex:1; min-width:0;}
+  .group-icon{
+    width:48px; height:48px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px;
+    flex-shrink:0;
+  }
+  .ic-veg{ background: rgba(61,77,46,.15); }
+  .ic-fruit{ background: rgba(177,80,45,.15); }
+  .ic-grain{ background: rgba(202,164,74,.18); }
+  .ic-protein{ background: rgba(216,162,148,.25); }
+  .ic-free{ background: rgba(58,66,52,.12); }
+
+  .group-title{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:500;
+    letter-spacing:-.01em;
+  }
+  .group-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .group-toggle{
+    width:36px; height:36px;
+    border-radius:50%;
+    background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    transition: transform .3s, background .25s;
+    flex-shrink:0;
+  }
+  .group.open .group-toggle{ transform: rotate(45deg); background:var(--terracotta); color:#fff;}
+  .group-toggle::before{
+    content:"+";
+    font-family:'Fraunces', serif;
+    font-size:24px; font-weight:300;
+    line-height:1;
+  }
+  .group-body{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .group.open .group-body{ max-height: 1000px; }
+  .group-content{
+    padding: 8px 32px 32px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:32px;
+  }
+  @media (max-width:680px){
+    .group-content{ grid-template-columns:1fr; }
+  }
+  .food-list{
+    list-style:none;
+  }
+  .food-list li{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px dotted rgba(0,0,0,.12);
+    gap:16px;
+  }
+  .food-list li:last-child{ border-bottom:none; }
+  .food-name{
+    font-size:15px;
+    color:var(--ink);
+  }
+  .food-portion{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:14px;
+    color:var(--terracotta);
+    font-weight:500;
+    text-align:right;
+    flex-shrink:0;
+  }
+  .gold-tip{
+    background: linear-gradient(135deg, rgba(202,164,74,.18), rgba(202,164,74,.05));
+    padding:24px;
+    border-radius:6px;
+    border-left:3px solid var(--mustard);
+  }
+  .gold-tip .tip-label{
+    display:flex; align-items:center; gap:8px;
+    font-size:10px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--olive-deep);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .gold-tip .tip-label::before{
+    content:"★";
+    color: var(--mustard);
+    font-size:14px;
+  }
+  .gold-tip p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .swap-rule{
+    max-width:1200px;
+    margin:40px auto 0;
+    padding:30px 36px;
+    background: var(--olive-deep);
+    color:var(--paper);
+    border-radius:8px;
+    display:flex; gap:24px; align-items:center;
+    flex-wrap:wrap;
+  }
+  .swap-rule .ico{
+    font-size:36px;
+    flex-shrink:0;
+  }
+  .swap-rule h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:20px;
+    margin-bottom:6px;
+    color: var(--mustard);
+  }
+  .swap-rule p{
+    font-size:14.5px;
+    color:rgba(251,247,238,.85);
+    line-height:1.6;
+  }
+
+  /* ==== Section 6 — Recomendaciones / Checklist ==== */
+  .checklist{
+    background: var(--bg-2);
+    padding: 130px 6vw;
+  }
+  .checklist-wrap{ max-width:1100px; margin:0 auto; width:100%; }
+  .checklist .eyebrow{
+    font-size:11px; letter-spacing:.4em; text-transform:uppercase;
+    color:var(--terracotta); font-weight:600;
+    margin-bottom:20px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .checklist .eyebrow::before{
+    content:""; width:50px; height:1px; background:var(--terracotta);
+  }
+  .checklist h2{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size: clamp(36px, 5.5vw, 72px);
+    line-height:1.05;
+    letter-spacing:-.03em;
+    margin-bottom:50px;
+    max-width:900px;
+  }
+  .checklist h2 em{ font-style:italic; color:var(--terracotta); font-weight:500; }
+  .checklist-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:18px;
+  }
+  .check-item{
+    background: var(--paper);
+    padding:26px 28px;
+    border-radius:6px;
+    display:flex; gap:18px; align-items:flex-start;
+    cursor:pointer;
+    transition: all .3s;
+    border:1px solid transparent;
+    position:relative;
+  }
+  .check-item:hover{
+    border-color: rgba(177,80,45,.3);
+    transform: translateY(-3px);
+  }
+  .check-item.checked{
+    background: var(--olive-deep);
+    color: var(--paper);
+  }
+  .check-item.checked .check-num{
+    background:var(--mustard); color:var(--olive-deep);
+  }
+  .check-item.checked .check-text{ color: rgba(251,247,238,.85); text-decoration: line-through; text-decoration-thickness:1px; text-decoration-color: rgba(251,247,238,.4); }
+  .check-num{
+    width:36px; height:36px;
+    border-radius:50%;
+    background:var(--cream);
+    color:var(--olive-deep);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:18px;
+    font-weight:500;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition: all .3s;
+  }
+  .check-text{
+    font-size:14.5px;
+    line-height:1.55;
+    color:var(--ink);
+    transition: all .3s;
+  }
+  .check-progress{
+    margin-top:36px;
+    text-align:center;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--ink-soft);
+  }
+  .check-progress span{
+    color:var(--terracotta);
+    font-weight:600;
+    font-size:24px;
+  }
+
+  /* ==== Section 7 — Reflexión ==== */
+  .reflect{
+    background:
+      radial-gradient(circle at 20% 30%, rgba(177,80,45,.12), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(61,77,46,.15), transparent 50%),
+      var(--bg);
+    padding:130px 6vw;
+  }
+  .reflect-wrap{
+    max-width:900px; margin:0 auto; width:100%;
+  }
+  .reflect .eyebrow{
+    font-size:11px; letter-spacing:.4em; text-transform:uppercase;
+    color:var(--olive); font-weight:600;
+    margin-bottom:24px;
+    text-align:center;
+  }
+  .reflect h2{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size: clamp(36px, 5.5vw, 68px);
+    line-height:1.05;
+    letter-spacing:-.03em;
+    text-align:center;
+    margin-bottom:18px;
+  }
+  .reflect h2 em{ font-style:italic; color:var(--terracotta); font-weight:500; }
+  .reflect-intro{
+    text-align:center; max-width:600px;
+    margin:0 auto 60px;
+    color:var(--ink-soft);
+    font-size:15px;
+  }
+  .question{
+    background:var(--paper);
+    border-radius:8px;
+    padding:30px 36px;
+    margin-bottom:18px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 30px -22px rgba(39,51,28,.2);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .question:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 20px 40px -22px rgba(39,51,28,.3);
+  }
+  .q-head{
+    display:flex; gap:18px; align-items:flex-start;
+    margin-bottom:14px;
+  }
+  .q-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:32px;
+    font-weight:300;
+    color:var(--terracotta);
+    line-height:.9;
+    flex-shrink:0;
+  }
+  .q-text{
+    font-family:'Fraunces', serif;
+    font-size:19px;
+    font-weight:500;
+    line-height:1.4;
+    letter-spacing:-.005em;
+  }
+  .q-text em{ font-style:italic; }
+  .question textarea{
+    width:100%;
+    min-height:70px;
+    border:none;
+    border-bottom:1px solid rgba(0,0,0,.15);
+    background:transparent;
+    font-family:'DM Sans', sans-serif;
+    font-size:15px;
+    color:var(--ink);
+    resize:vertical;
+    padding:8px 0;
+    outline:none;
+    transition: border-color .25s;
+  }
+  .question textarea:focus{
+    border-bottom-color:var(--terracotta);
+  }
+  .question textarea::placeholder{
+    color: rgba(0,0,0,.3);
+    font-style:italic;
+  }
+
+  /* ==== Section 8 — Cierre ==== */
+  .closing{
+    background: var(--olive-deep);
+    color: var(--paper);
+    padding:140px 6vw;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .closing::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(202,164,74,.2), transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(177,80,45,.18), transparent 50%);
+    pointer-events:none;
+  }
+  .closing-inner{
+    position:relative; z-index:2;
+    max-width:800px; margin:0 auto;
+  }
+  .closing .quote-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:120px;
+    line-height:1;
+    color:var(--mustard);
+    opacity:.5;
+  }
+  .closing h2{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-style:italic;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height:1.25;
+    margin:10px 0 50px;
+    letter-spacing:-.01em;
+  }
+  .closing h2 em{ font-style:normal; color:var(--mustard); font-weight:500; }
+  .signature-block{
+    border-top:1px solid rgba(251,247,238,.2);
+    padding-top:40px;
+    margin-top:50px;
+  }
+  .closing .author{
+    font-family:'Caveat', cursive;
+    font-size:48px;
+    color:var(--mustard);
+    line-height:1;
+    margin-bottom:8px;
+  }
+  .closing .role{
+    font-size:11px;
+    letter-spacing:.4em;
+    text-transform:uppercase;
+    color:rgba(251,247,238,.6);
+  }
+  .closing .for{
+    margin-top:40px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:18px;
+    color:rgba(251,247,238,.7);
+  }
+  .closing .for strong{
+    color:var(--paper);
+    font-weight:500;
+    font-style:normal;
+  }
+
+  /* ==== Reveal animation ==== */
+  .reveal{
+    opacity:0;
+    transform: translateY(40px);
+    transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.in{ opacity:1; transform:none; }
+  .reveal.delay-1{ transition-delay:.1s; }
+  .reveal.delay-2{ transition-delay:.2s; }
+  .reveal.delay-3{ transition-delay:.3s; }
+  .reveal.delay-4{ transition-delay:.4s; }
+
+  /* ==== Util ==== */
+  ::selection{ background: var(--terracotta); color:var(--paper); }
+</style>
+</head>
+<body>
+
+<div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+<nav class="nav" id="nav">
+  <a href="#hero" data-label="Inicio" class="active"></a>
+  <a href="#letter" data-label="Tu carta"></a>
+  <a href="#insight" data-label="Diagnóstico"></a>
+  <a href="#plan" data-label="Plan 3 días"></a>
+  <a href="#swap" data-label="Intercambios"></a>
+  <a href="#checklist" data-label="Hábitos"></a>
+  <a href="#reflect" data-label="Reflexión"></a>
+  <a href="#closing" data-label="Cierre"></a>
+</nav>
+
+<!-- ================== HERO ================== -->
+<section class="hero" id="hero">
+  <div class="hero-decor"><span>· crear · salud · crear · salud ·</span></div>
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow reveal">Plan nutricional · 3 días</div>
+      <h1 class="reveal delay-1">
+        <span class="crear">Crear</span>
+        <span class="salud">salud<span class="it">.</span></span>
+      </h1>
+      <p class="hero-sub reveal delay-2">
+        Hola, estás a punto de leer tu plan de comidas de 3 días diseñado especialmente
+        para ti. Tomé en cuenta todos los datos que me pasaste por chat —edad, peso,
+        talla, lo que regularmente comes— y junto con tus estudios decidimos el camino que vamos a tomar.
+      </p>
+      <div class="hero-meta reveal delay-3">
+        <div class="meta-block">
+          <div class="meta-label">Para</div>
+          <div class="meta-value">Adriana Mondragón B.</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">Diseñado por</div>
+          <div class="meta-value">Diana Eunice G.</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">Meta</div>
+          <div class="meta-value" style="color:var(--terracotta)">Crear salud</div>
+        </div>
+      </div>
+      <div class="scroll-cue reveal delay-4">
+        <span>Empezamos</span><span class="line"></span><span>↓</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== LETTER ================== -->
+<section class="letter" id="letter">
+  <div class="letter-wrap">
+    <div class="letter-card reveal">
+      <div class="letter-tag">Una carta para ti</div>
+      <h2>¿Cómo lo vamos a lograr? <em>Trabajando en equipo.</em></h2>
+      <p>
+        Esto es un trabajo en equipo, donde yo espero que tomes todas las herramientas
+        que te daré y puedas usarlas en tu futuro: principalmente, que distingas qué
+        alimentos son los que debes priorizar en tu día a día, qué porciones, e incluso
+        cuándo está bien soltar un poquito el cinturón y darnos un gustito.
+      </p>
+      <p>
+        Recuerda que comer bien <strong>no se trata de prohibir o satanizar alimentos</strong>,
+        sino de pensar y ser más inteligente que un antojo.
+      </p>
+      <div class="signature">
+        Diana
+        <small>Tu nutrióloga · acompañándote en el camino</small>
+      </div>
+    </div>
+
+    <div class="why-three reveal delay-2">
+      <div class="label">¿Por qué solo 3 días?</div>
+      <p>
+        Esto es una guía, no busca someterte. Al contrario: quiero que te sientas libre
+        de explorar, jugar y seguir con tus comidas sin miedo a qué pasa si te saltaste
+        una. Más adelante te explico qué pasa en los otros días.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== INSIGHT ================== -->
+<section class="insight" id="insight">
+  <div class="insight-wrap">
+    <div class="eyebrow reveal">Lo que vimos en ti</div>
+    <h2 class="reveal delay-1">
+      Un plan que nos habla de <em>una mujer activa</em> con una rutina muy clara.
+    </h2>
+    <div class="insight-grid">
+      <div class="insight-card reveal delay-1">
+        <div class="num">01</div>
+        <h3>Vas al gimnasio en la mañana</h3>
+        <p>Por eso procuro darte comidas que te brinden energía durante todo tu entrenamiento.</p>
+      </div>
+      <div class="insight-card reveal delay-2">
+        <div class="num">02</div>
+        <h3>Desayunas casi siempre huevo</h3>
+        <p>Lo respetamos. Lo aprovechamos. Lo hacemos parte del ritmo del plan.</p>
+      </div>
+      <div class="insight-card reveal delay-3">
+        <div class="num">03</div>
+        <h3>Comidas clásicas mexicanas</h3>
+        <p>Sopita, carnita, arroz, verduras. El secreto aquí son las porciones —y de eso vamos a hablar.</p>
+      </div>
+      <div class="insight-card reveal delay-4">
+        <div class="num">04</div>
+        <h3>No cenas tan pesado</h3>
+        <p>Tu cena se mantiene ligera, justo como tu cuerpo lo prefiere para descansar bien.</p>
+      </div>
+    </div>
+    <p class="reveal delay-4" style="margin-top:50px; font-family:'Fraunces', serif; font-style:italic; font-size:clamp(20px,2.4vw,28px); max-width:800px; line-height:1.4; color:rgba(251,247,238,.85);">
+      Es necesario entender tu rutina para comer lo que se acomode a ella —y no hacer que
+      tu rutina cambie por las comidas. Eso, además, no va a pasar.
+    </p>
+  </div>
+</section>
+
+<!-- ================== PLAN 3 DÍAS ================== -->
+<section class="plan" id="plan">
+  <div class="plan-head reveal">
+    <div class="eyebrow">Tu plan de comidas</div>
+    <h2>Tres días, <em>infinitas combinaciones.</em></h2>
+    <p>
+      Es más fácil recordar las porciones de 3 días que de 7. Familiarízate con estas
+      porciones y luego siéntete libre de repetir, intercambiar o cocinar para dos días.
+      Si te gustó tu licuado, puedes tomarlo el lunes, el martes o el sábado.
+    </p>
+  </div>
+
+  <div class="day-tabs reveal delay-1">
+    <button class="day-tab active" data-day="1"><span class="num">Día</span>Opción 01</button>
+    <button class="day-tab" data-day="2"><span class="num">Día</span>Opción 02</button>
+    <button class="day-tab" data-day="3"><span class="num">Día</span>Opción 03</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="meal-pane active" data-pane="1">
+    <div class="meal-card reveal">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">☼</span>
+          <div class="meal-title">Desayuno</div>
+          <div class="meal-time">Para arrancar</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">1</div><div class="opt-name">Licuado energético</div></div>
+          <p>1 taza leche descremada · ½ pza plátano · ½ taza avena en hojuelas · 2 cda de crema de cacahuate</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card reveal delay-1">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">◐</span>
+          <div class="meal-title">Almuerzo</div>
+          <div class="meal-time">Media mañana</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">1</div><div class="opt-name">Huevo a la mexicana</div></div>
+          <p><strong>2 huevos</strong> · 1 taza de verdura (tomate, cebolla, chile) · 2 tortillas (cocinar con 1 cdita de aceite) · ½ taza frijol cocido</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card reveal delay-2">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">◉</span>
+          <div class="meal-title">Comida</div>
+          <div class="meal-time">El plato fuerte</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">1</div><div class="opt-name">Picadillo casero</div></div>
+          <p><strong>60 g carne molida de res</strong> · 2 tazas de verdura (calabacita, cebolla, zanahoria, chícharo) cocinar con 1 cdita de aceite · ½ taza arroz cocido · ⅓ aguacate</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card reveal delay-3">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">☾</span>
+          <div class="meal-title">Cena</div>
+          <div class="meal-time">Antes de dormir</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">1</div><div class="opt-name">Yogurt con manzana</div></div>
+          <p><strong>¾ taza de yogurt natural griego</strong> · 1 manzana verde · 10 almendras</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="meal-pane" data-pane="2">
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">☼</span>
+          <div class="meal-title">Desayuno</div>
+          <div class="meal-time">Para arrancar</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">2</div><div class="opt-name">Papaya con yogurt</div></div>
+          <p><strong>1 taza de papaya</strong> · ¾ taza yogurt light · 3 cdas granola baja en grasa</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">◐</span>
+          <div class="meal-title">Almuerzo</div>
+          <div class="meal-time">Media mañana</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">2</div><div class="opt-name">Jugo verde + huevo con espinacas</div></div>
+          <p><strong>Jugo:</strong> 1 taza de pepino con cáscara · 1 taza de espinaca · ¾ de taza de piña picada</p>
+          <p style="margin-top:8px;"><strong>Plato:</strong> 2 huevos · ½ taza de espinacas cocidas (cocinar con 1 cdita de aceite) · ⅓ aguacate · ½ taza frijol cocido · 2 tortillas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">◉</span>
+          <div class="meal-title">Comida</div>
+          <div class="meal-time">El plato fuerte</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">2</div><div class="opt-name">Pollo con verduras y puré</div></div>
+          <p><strong>70 g de pechuga de pollo</strong> · 2 tazas de verduras (pimiento, zanahoria, calabacita, brócoli) salteadas con 1 cdita de aceite</p>
+          <p style="margin-top:8px;"><strong>Puré:</strong> 1 papa cocida · sal · pimienta · 1½ cdita de mantequilla</p>
+          <p style="margin-top:8px;"><strong>Bebida:</strong> Agua de guayaba (3 piezas, sin azúcar, no colada)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">☾</span>
+          <div class="meal-title">Cena</div>
+          <div class="meal-time">Antes de dormir</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">2</div><div class="opt-name">Quesadillas + manzana</div></div>
+          <p><strong>2 tortillas</strong> · 1 taza de verduras · 70 g queso blanco · 1 manzana</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="meal-pane" data-pane="3">
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">☼</span>
+          <div class="meal-title">Desayuno</div>
+          <div class="meal-time">Para arrancar</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">3</div><div class="opt-name">Licuado + galletas maría</div></div>
+          <p><strong>1 taza de leche descremada</strong> · ½ plátano · 1 cda de crema de cacahuate · 5 galletas maría</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">◐</span>
+          <div class="meal-title">Almuerzo</div>
+          <div class="meal-time">Media mañana</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">3</div><div class="opt-name">Tostada de huevo y aguacate</div></div>
+          <p><strong>2 panes de caja integral tostado</strong> · ⅓ aguacate · 2 huevos revueltos (cocinar con 1 cdita de aceite)</p>
+          <p style="margin-top:8px;"><strong>Acompaña:</strong> 1 taza de nopales · 1 taza de pico de gallo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">◉</span>
+          <div class="meal-title">Comida</div>
+          <div class="meal-time">El plato fuerte</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">3</div><div class="opt-name">Sopa con verduras y bistec</div></div>
+          <p><strong>¾ taza de sopa de letras</strong> · 75 g de bistec de bola · 2 tazas de verdura picada · cocinar con 1 cdita de aceite</p>
+          <p style="margin-top:8px;"><strong>Bebida:</strong> Agua de pepino y limón</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-card">
+      <div class="meal-header">
+        <div>
+          <span class="meal-icon">☾</span>
+          <div class="meal-title">Cena</div>
+          <div class="meal-time">Antes de dormir</div>
+        </div>
+      </div>
+      <div class="meal-body">
+        <div class="meal-option">
+          <div class="meal-option-head"><div class="opt-num">3</div><div class="opt-name">Sándwich + papaya</div></div>
+          <p><strong>2 piezas pan integral</strong> · 2 rebanadas de jamón · agregar verdura · 1 cdita de mayonesa · 1 taza de papaya</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== INTERCAMBIOS ================== -->
+<section class="swap" id="swap">
+  <div class="swap-head reveal">
+    <div class="eyebrow">Lista de intercambios</div>
+    <h2>Sé libre, explora, <em>juega con tus comidas.</em></h2>
+    <p>
+      Aquí tienes un cuadro con los alimentos que se pueden adecuar más a tu estilo de
+      vida. Echa a volar tu imaginación —y si quieres agregar un alimento, puedes buscarlo
+      en esta lista o preguntarme.
+    </p>
+  </div>
+
+  <!-- VERDURAS -->
+  <div class="group reveal delay-1" data-group>
+    <div class="group-head">
+      <div class="group-left">
+        <div class="group-icon ic-veg">🥬</div>
+        <div>
+          <div class="group-title">Verduras</div>
+          <div class="group-sub">Las puedes comer en todas tus comidas</div>
+        </div>
+      </div>
+      <div class="group-toggle"></div>
+    </div>
+    <div class="group-body">
+      <div class="group-content">
+        <ul class="food-list">
+          <li><span class="food-name">Tomate</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Cebolla</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Zanahoria</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Calabacita</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Chayote crudo</span><span class="food-portion">½ pieza</span></li>
+          <li><span class="food-name">Nopales</span><span class="food-portion">1 taza</span></li>
+          <li><span class="food-name">Champiñón cocido</span><span class="food-portion">½ taza</span></li>
+          <li><span class="food-name">Brócoli crudo</span><span class="food-portion">1 taza</span></li>
+        </ul>
+        <div class="gold-tip">
+          <div class="tip-label">Tip de oro</div>
+          <p>Las verduras tienen muy pocas calorías y son muy beneficiosas para nuestra salud, por lo que puedes comerlas en todas tus comidas y agregar un tomate extra, no te preocupes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRUTAS -->
+  <div class="group reveal delay-1" data-group>
+    <div class="group-head">
+      <div class="group-left">
+        <div class="group-icon ic-fruit">🍎</div>
+        <div>
+          <div class="group-title">Frutas</div>
+          <div class="group-sub">Energía rápida · ideal antes del ejercicio</div>
+        </div>
+      </div>
+      <div class="group-toggle"></div>
+    </div>
+    <div class="group-body">
+      <div class="group-content">
+        <ul class="food-list">
+          <li><span class="food-name">Manzana</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Fresas</span><span class="food-portion">17 piezas</span></li>
+          <li><span class="food-name">Mango</span><span class="food-portion">½ pieza</span></li>
+          <li><span class="food-name">Guayaba</span><span class="food-portion">3 piezas</span></li>
+          <li><span class="food-name">Papaya</span><span class="food-portion">1 taza</span></li>
+          <li><span class="food-name">Durazno amarillo</span><span class="food-portion">2 piezas</span></li>
+          <li><span class="food-name">Plátano</span><span class="food-portion">½ pieza</span></li>
+          <li><span class="food-name">Sandía</span><span class="food-portion">1 pieza</span></li>
+        </ul>
+        <div class="gold-tip">
+          <div class="tip-label">Tip de oro</div>
+          <p>Las frutas son azúcar que te da energía rápido. Muy recomendadas antes del ejercicio. Procura comer 3 porciones al día.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CEREALES -->
+  <div class="group reveal delay-2" data-group>
+    <div class="group-head">
+      <div class="group-left">
+        <div class="group-icon ic-grain">🌾</div>
+        <div>
+          <div class="group-title">Cereales</div>
+          <div class="group-sub">Busca que sean integrales</div>
+        </div>
+      </div>
+      <div class="group-toggle"></div>
+    </div>
+    <div class="group-body">
+      <div class="group-content">
+        <ul class="food-list">
+          <li><span class="food-name">Pan de sándwich</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Tortilla</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Bolillo sin migajón</span><span class="food-portion">½ pieza</span></li>
+          <li><span class="food-name">Elote en granos</span><span class="food-portion">½ taza</span></li>
+          <li><span class="food-name">Avena cocida</span><span class="food-portion">¾ taza</span></li>
+          <li><span class="food-name">Arroz cocido</span><span class="food-portion">¼ taza</span></li>
+          <li><span class="food-name">Pastas</span><span class="food-portion">⅓ a ¼ de taza</span></li>
+        </ul>
+        <div class="gold-tip">
+          <div class="tip-label">Tip de oro</div>
+          <p>Busca que los cereales sean integrales: esto nos ayuda a amortiguar el impacto que tienen en tus niveles de azúcar. Puedes preguntarme sobre el equivalente del que vas a hacer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORIGEN ANIMAL -->
+  <div class="group reveal delay-2" data-group>
+    <div class="group-head">
+      <div class="group-left">
+        <div class="group-icon ic-protein">🥚</div>
+        <div>
+          <div class="group-title">Alimentos de origen animal</div>
+          <div class="group-sub">Hasta 4 porciones de los magros · 2 de los demás</div>
+        </div>
+      </div>
+      <div class="group-toggle"></div>
+    </div>
+    <div class="group-body">
+      <div class="group-content">
+        <ul class="food-list">
+          <li><span class="food-name">Pierna pollo sin piel o pechuga c/piel</span><span class="food-portion">35 g</span></li>
+          <li><span class="food-name">Jamón pavo, pierna o bajo en grasa</span><span class="food-portion">1 rebanada</span></li>
+          <li><span class="food-name">Milanesa de cerdo</span><span class="food-portion">40 g</span></li>
+          <li><span class="food-name">Huevo entero</span><span class="food-portion">1 pieza</span></li>
+          <li><span class="food-name">Queso blanco</span><span class="food-portion">35 g</span></li>
+          <li><span class="food-name">Pierna de pollo con piel cocida</span><span class="food-portion">⅓ de pieza</span></li>
+        </ul>
+        <div class="gold-tip">
+          <div class="tip-label">Tip de oro</div>
+          <p>Recuerda: de los primeros 3 puedes comer hasta 4 porciones. De los siguientes 3, hasta 2 porciones al día.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIBRES -->
+  <div class="group reveal delay-3" data-group>
+    <div class="group-head">
+      <div class="group-left">
+        <div class="group-icon ic-free">⊘</div>
+        <div>
+          <div class="group-title">Alimentos libres de energía</div>
+          <div class="group-sub">¡No se deben comer sin control!</div>
+        </div>
+      </div>
+      <div class="group-toggle"></div>
+    </div>
+    <div class="group-body">
+      <div class="group-content">
+        <ul class="food-list">
+          <li><span class="food-name">Consomé de pollo en polvo</span><span class="food-portion">1 cucharada</span></li>
+          <li><span class="food-name">Canela</span><span class="food-portion">1 cucharadita</span></li>
+          <li><span class="food-name">Chile Tajín</span><span class="food-portion">¼ cucharadita</span></li>
+          <li><span class="food-name">Coca cola sin azúcar</span><span class="food-portion">1 lata</span></li>
+          <li><span class="food-name">Jengibre</span><span class="food-portion">3 cucharaditas</span></li>
+          <li><span class="food-name">Limón</span><span class="food-portion">½ pieza</span></li>
+          <li><span class="food-name">Menta</span><span class="food-portion">1 cucharadita</span></li>
+          <li><span class="food-name">Vainilla</span><span class="food-portion">1 cdita</span></li>
+          <li><span class="food-name">Sal</span><span class="food-portion">1 cdita (&lt;5 g/día)</span></li>
+        </ul>
+        <div class="gold-tip">
+          <div class="tip-label">Tip de oro</div>
+          <p>Aunque no tengan calorías significativas, pueden tener otras cosas que no nos hacen tanto bien. Consúmelos con moderación y realmente pregúntate si vale la pena ponerlo a tus alimentos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swap-rule reveal delay-3">
+    <div class="ico">⇄</div>
+    <div>
+      <h4>La regla del intercambio</h4>
+      <p>
+        Si quieres hacerte un licuado de fresas y yo te puse plátano, quitas ½ plátano y pones 17 fresas.
+        O pon 8–9 en la comida como postre. Cambia una comida y borra el equivalente del menú diario… o come como el día que preferiste. También puedes cocinar para dos días y ahorrarte la cocinada del día siguiente.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== CHECKLIST ================== -->
+<section class="checklist" id="checklist">
+  <div class="checklist-wrap">
+    <div class="eyebrow reveal">Hábitos que recomiendo</div>
+    <h2 class="reveal delay-1">Pequeñas decisiones, <em>grandes resultados.</em></h2>
+    <div class="checklist-grid">
+      <div class="check-item reveal delay-1" data-check>
+        <div class="check-num">01</div>
+        <div class="check-text">Lleva un registro de lo que comes para repasar las porciones. Puede ser en plataformas como Fitia o un cuaderno.</div>
+      </div>
+      <div class="check-item reveal delay-1" data-check>
+        <div class="check-num">02</div>
+        <div class="check-text">Come en horarios establecidos, cuando estos se ajusten a tu rutina.</div>
+      </div>
+      <div class="check-item reveal delay-2" data-check>
+        <div class="check-num">03</div>
+        <div class="check-text">Involucra a tu familia en tu meta: comer en porciones adecuadas para cada uno e impulsar tus metas.</div>
+      </div>
+      <div class="check-item reveal delay-2" data-check>
+        <div class="check-num">04</div>
+        <div class="check-text">Trata de disminuir el consumo de alcohol y tabaco.</div>
+      </div>
+      <div class="check-item reveal delay-3" data-check>
+        <div class="check-num">05</div>
+        <div class="check-text">Evita los alimentos ultraprocesados —mientras más natural, mejor.</div>
+      </div>
+      <div class="check-item reveal delay-3" data-check>
+        <div class="check-num">06</div>
+        <div class="check-text">Mantén tu estilo de vida activo y siempre aspira a mejorar tu salud.</div>
+      </div>
+    </div>
+    <div class="check-progress reveal delay-4">
+      Has marcado <span id="checkCount">0</span> de 6 hábitos · da clic para marcar
+    </div>
+  </div>
+</section>
+
+<!-- ================== REFLEXIÓN ================== -->
+<section class="reflect" id="reflect">
+  <div class="reflect-wrap">
+    <div class="eyebrow reveal">Antes de despedirnos</div>
+    <h2 class="reveal delay-1">Cinco preguntas <em>para reflexionar.</em></h2>
+    <p class="reflect-intro reveal delay-2">
+      Te haré unas preguntas para reflexionar y, si puedes, ayudarme con las respuestas.
+      Tómate tu tiempo —no hay respuesta correcta o incorrecta.
+    </p>
+
+    <div class="question reveal delay-1">
+      <div class="q-head">
+        <div class="q-num">01</div>
+        <div class="q-text">¿Estás lista para empezar esta <em>grandiosa aventura</em> con tu cuerpo?</div>
+      </div>
+      <textarea placeholder="Escribe tu respuesta aquí…"></textarea>
+    </div>
+
+    <div class="question reveal delay-1">
+      <div class="q-head">
+        <div class="q-num">02</div>
+        <div class="q-text">¿Qué tanto puedes entender qué significan tus estudios?</div>
+      </div>
+      <textarea placeholder="Escribe tu respuesta aquí…"></textarea>
+    </div>
+
+    <div class="question reveal delay-2">
+      <div class="q-head">
+        <div class="q-num">03</div>
+        <div class="q-text">¿Qué tan difícil es llevar a cabo este plan de comidas?</div>
+      </div>
+      <textarea placeholder="Escribe tu respuesta aquí…"></textarea>
+    </div>
+
+    <div class="question reveal delay-2">
+      <div class="q-head">
+        <div class="q-num">04</div>
+        <div class="q-text">¿Conoces lo que son los <em>picos de glucosa e insulina?</em></div>
+      </div>
+      <textarea placeholder="Escribe tu respuesta aquí…"></textarea>
+    </div>
+
+    <div class="question reveal delay-3">
+      <div class="q-head">
+        <div class="q-num">05</div>
+        <div class="q-text">¿Crees que la fibra es buena o mala para nuestro cuerpo?</div>
+      </div>
+      <textarea placeholder="Escribe tu respuesta aquí…"></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ================== CIERRE ================== -->
+<section class="closing" id="closing">
+  <div class="closing-inner">
+    <div class="quote-mark reveal">"</div>
+    <h2 class="reveal delay-1">
+      Espero que este plan sea <em>beneficioso</em> en tu camino a la buena salud.
+      Me despido esperando conocer tus respuestas y hacer una nueva valoración sobre tu evolución.
+    </h2>
+    <div class="signature-block reveal delay-2">
+      <div class="author">Diana Eunice González Hernández</div>
+      <div class="role">Nutrióloga</div>
+      <div class="for">Hecho con cuidado para <strong>Adriana Mondragón Bonilla</strong></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ===== Progress bar =====
+  const bar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // ===== Reveal on scroll =====
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ===== Day tabs =====
+  const tabs = document.querySelectorAll('.day-tab');
+  const panes = document.querySelectorAll('.meal-pane');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+      t.classList.add('active');
+      const day = t.dataset.day;
+      document.querySelector(`.meal-pane[data-pane="${day}"]`).classList.add('active');
+      // re-trigger reveal animation for new pane cards
+      document.querySelectorAll(`.meal-pane[data-pane="${day}"] .meal-card`).forEach(c=>{
+        c.style.animation = 'none';
+        void c.offsetWidth;
+        c.style.animation = '';
+      });
+    });
+  });
+
+  // ===== Accordion groups =====
+  document.querySelectorAll('[data-group]').forEach(g => {
+    const head = g.querySelector('.group-head');
+    head.addEventListener('click', () => {
+      g.classList.toggle('open');
+    });
+  });
+  // open the first group by default
+  const firstGroup = document.querySelector('[data-group]');
+  if (firstGroup) firstGroup.classList.add('open');
+
+  // ===== Checklist =====
+  const checks = document.querySelectorAll('[data-check]');
+  const counter = document.getElementById('checkCount');
+  checks.forEach(c => {
+    c.addEventListener('click', () => {
+      c.classList.toggle('checked');
+      const n = document.querySelectorAll('[data-check].checked').length;
+      counter.textContent = n;
+    });
+  });
+
+  // ===== Nav active state =====
+  const navLinks = document.querySelectorAll('.nav a');
+  const sections = document.querySelectorAll('section');
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => navObs.observe(s));
+</script>
+</body>
+</html>
